@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+	cursor: pointer;
+}
+
+.chinese .english p {
+	text-indent: 2rem;
+}
