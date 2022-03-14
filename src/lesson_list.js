@@ -14,21 +14,23 @@ export class LessonList extends React.Component {
   }
 
   componentDidMount() {
-	let sideButton = document.getElementById('sidebutton');
-	let sideList = document.getElementById('sidelist');
-	sideButton.addEventListener('click', (e) => {
-	  if(sideList.classList.contains('-translate-x-full')) {
-		  sideButton.classList.innerHtml = 'x';
-		  sideList.classList.remove('-translate-x-full');
-		  sideButton.classList.remove('-right-10');
-		  sideButton.classList.add('right-0');
+	this.sideButton = document.getElementById('sidebutton');
+	this.sideList = document.getElementById('sidelist');
+	this.sideButton.addEventListener('click', (e) => this.toggleSideList());
+  }
+
+  toggleSideList() {
+	  if(this.sideList.classList.contains('-translate-x-full')) {
+		  this.sideButton.classList.innerHtml = 'x';
+		  this.sideList.classList.remove('-translate-x-full');
+		  this.sideButton.classList.remove('-right-10');
+		  this.sideButton.classList.add('right-0');
 	  } else {
-		  sideButton.classList.innerHtml = '>';
-		  sideList.classList.add('-translate-x-full');
-		  sideButton.classList.add('-right-10');
-		  sideButton.classList.remove('right-0');
+		  this.sideButton.classList.innerHtml = '>';
+		  this.sideList.classList.add('-translate-x-full');
+		  this.sideButton.classList.add('-right-10');
+		  this.sideButton.classList.remove('right-0');
 	  }
-	});
   }
 
   render() {
@@ -45,7 +47,7 @@ export class LessonList extends React.Component {
           {
 	        this.props.book.map(item => {
               return <li key={ item.id } className="py-1.5 tracking-loose">
-	    	     <a onClick={(e) => this.props.handleIndexChange(e, item.id)} className={this.props.index==item.id ? 'hover:text-rose-600 text-rose-600' : 'hover:text-rose-600'}>
+	    	     <a onClick={(e) => {this.toggleSideList(); this.props.handleIndexChange(e, item.id)} } className={this.props.index==item.id ? 'hover:text-rose-600 text-rose-600' : 'hover:text-rose-600'}>
 	    	       <span className="px-2">{ item.id }</span>
 	    	       { item.title }
 	    	     </a>
