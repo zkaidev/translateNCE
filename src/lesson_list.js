@@ -11,6 +11,8 @@ export class LessonList extends React.Component {
 	  book: this.props.book,
 	  index: this.props.index,
 	};
+
+	this.toggleSideList = this.toggleSideList.bind(this);
   }
 
   componentDidMount() {
